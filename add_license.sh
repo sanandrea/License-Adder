@@ -46,7 +46,7 @@ read project
 slashComments=("c" "h" "cpp" "hpp" "m" "java" "js")
 hashComments=("py" "sh")
 
-FILES=$(find $1 -type f -not -path "$1/.git/*" -not -path "$1/node_modules/*")
+FILES=$(find "$1" -type f -not -path "$1/.git/*" -not -path "$1/node_modules/*")
 
 log=$1/$project.add_lcs.log
 for f in $FILES; do
@@ -69,13 +69,13 @@ for f in $FILES; do
     if [ ${#comment} -gt 0 ]; then
         #prepend comment characters
         #see http://stackoverflow.com/a/9588622/1073786
-        awk '{print "'"$comment"'" $0;}' $2 > $f.new
-        echo $comment >> $f.new
-        echo "$comment Copyright © $(date +"%Y") $author" >> $f.new
-        echo "$comment This file is part of project: $project" >> $f.new
-        echo $comment >> $f.new
-        cat $f >> $f.new
-        mv $f.new $f
+        awk '{print "'"$comment"'" $0;}' $2 > "$f.new"
+        echo $comment >> "$f.new"
+        echo "$comment Copyright © $(date +"%Y") $author" >> "$f.new"
+        echo "$comment This file is part of project: $project" >> "$f.new"
+        echo $comment >> "$f.new"
+        cat $f >> "$f.new"
+        mv "$f.new" "$f"
         echo "License Header copied to $f" >> $log
     else
         echo "$f does not belong to licensable files" >> $log
