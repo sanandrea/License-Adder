@@ -1,7 +1,7 @@
 #License Adder
-This simple bash scripts adds a license information to all files
-present in a certain folder. This is useful for old projects
-which do not contain a header informotion in each file.
+This simple bash script adds a license information to all source code
+files present in a certain project folder. This is useful for old 
+projects which do not contain a header informotion in each file.
 
 The script supports only adding GPL and MIT license.
 See add_license.sh at line 52 too add other types of licences.
