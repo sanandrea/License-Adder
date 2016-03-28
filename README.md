@@ -4,7 +4,7 @@ files present in a certain project folder. This is useful for old
 projects which do not contain a header informotion in each file.
 
 The script supports only adding GPL and MIT license.
-See add_license.sh at line 52 too add other types of licences.
+See add_license.sh at line 53 to add other types of licences.
 
 The supported file extensions for the moment are:
 "c" "h" "cpp" "hpp" "m" "java" "js" "py" "sh"
