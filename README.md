@@ -13,7 +13,7 @@ To add other extensions you can add them in the arrays:
 `slashComments` or `hashComments` 
 
 ##Usage
-`./add_license.sh folder_of_project license_header
+`./add_license.sh folder_of_project license_header`
 
 I have provided two license headers for gplv2 and MIT respectively the files:
 `lcs_mit` and `lcs_gplv2`
