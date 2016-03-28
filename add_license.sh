@@ -46,11 +46,9 @@ read project
 slashComments=("c" "h" "cpp" "hpp" "m" "java" "js")
 hashComments=("py" "sh")
 
-FILES=$(find "$1" -type f -not -path "$1/.git/*" -not -path "$1/node_modules/*")
-
 log=$1/$project.add_lcs.log
-for f in $FILES; do
-  if (grep -Eq '(?:PURPOSE AND NONINFRINGEMENT|GNU General Public License)' $f);then 
+find $1 -type f -not -path "$1/.git/*" -not -path "$1/node_modules/*" | while read f; do
+  if (grep -Eq '(?:PURPOSE AND NONINFRINGEMENT|GNU General Public License)' "$f");then 
     echo "No need to copy the License Header to $f" >> $log
   else
     #get file extension
@@ -74,7 +72,7 @@ for f in $FILES; do
         echo "$comment Copyright © $(date +"%Y") $author" >> "$f.new"
         echo "$comment This file is part of project: $project" >> "$f.new"
         echo $comment >> "$f.new"
-        cat $f >> "$f.new"
+        cat "$f" >> "$f.new"
         mv "$f.new" "$f"
         echo "License Header copied to $f" >> $log
     else
