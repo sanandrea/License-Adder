@@ -14,11 +14,17 @@ if [ $# -lt 2 ]; then
     echo "Provide project folder as first argument and license file as second argument"
     exit 0
 fi
+
+echo "Enter author, followed by [ENTER]:"
+read author
+echo "Project name, followed by [ENTER]:"
+read project
+
 slashComments=("c" "h" "cpp" "hpp" "m" "java" "js")
 hashComments=("py" "sh")
 
-FILES=$(find $1 -type f)
-
+FILES=$(find $1 -type f -not -path "$1/.git/*")
+echo $FILES
 for f in $FILES; do
   if (grep -Eq '(?:PURPOSE AND NONINFRINGEMENT|GNU General Public License)' $f);then 
     echo "No need to copy the License Header to $f"
@@ -40,6 +46,10 @@ for f in $FILES; do
         #prepend comment characters
         #see http://stackoverflow.com/a/9588622/1073786
         awk '{print "'"$comment"'" $0;}' $2 > $f.new
+        echo $comment >> $f.new
+        echo "$comment Copyright © $(date +"%Y") $author" >> $f.new
+        echo "$comment This file is part of project: $project" >> $f.new
+        echo $comment >> $f.new
         cat $f >> $f.new
         mv $f.new $f
         echo "License Header copied to $f"
