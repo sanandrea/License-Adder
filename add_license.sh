@@ -20,7 +20,7 @@ hashComments=("py" "sh")
 FILES=$(find $1 -type f)
 
 for f in $FILES; do
-  if (grep '(?:PURPOSE AND NONINFRINGEMENT|GNU General Public License)' $f);then 
+  if (grep -E '(?:PURPOSE AND NONINFRINGEMENT|GNU General Public License)' $f);then 
     echo "No need to copy the License Header to $f"
   else
     #get file extension
