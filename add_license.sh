@@ -48,7 +48,7 @@ hashComments=("py" "sh")
 
 log=$1/$project.add_lcs.log
 find $1 -type f -not -path "$1/.git/*" -not -path "$1/node_modules/*" | while read f; do
-  if (grep -Eq '(?:PURPOSE AND NONINFRINGEMENT|GNU General Public License)' "$f");then 
+  if (grep -Eq '(?:PURPOSE AND NONINFRINGEMENT|GNU General Public License|Copyright)' "$f");then 
     echo "No need to copy the License Header to $f" >> $log
   else
     #get file extension
